@@ -1,0 +1,22 @@
+{
+  "id": "tailored_profile",
+  "title": "Test",
+  "base_profile_id": "original_profile",
+  "rules": {
+    "some_rule_id_here": {
+      "selected": true,
+      "severity": "high"
+    },
+    "different_rule_id_here": {
+      "role": "unscored"
+    }
+  },
+  "variables": {
+    "a_variable_id": {
+      "value": "New Value"
+    },
+    "another_variable_id": {
+      "value": 42
+    }
+  }
+}
