@@ -17,6 +17,9 @@
     },
     "another_variable_id": {
       "value": 42
+    },
+    "3rd_variable_id": {
+      "select": "option_id"
     }
   }
 }

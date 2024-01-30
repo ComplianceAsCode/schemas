@@ -21,7 +21,11 @@
       "additionalProperties": {
         "type": "object",
         "additionalProperties": false,
-        "minProperties": 1,
+        "anyOf": [
+          {"required": ["selected"]},
+          {"required": ["severity"]},
+          {"required": ["role"]}
+        ],
         "properties": {
           "selected": {
             "type": "boolean"
@@ -42,10 +46,16 @@
       "additionalProperties": {
         "type": "object",
         "additionalProperties": false,
-        "minProperties": 1,
+        "oneOf": [
+          {"required": ["value"]},
+          {"required": ["select"]}
+        ],
         "properties": {
           "value": {
             "type": ["string", "integer", "boolean"]
+          },
+          "select": {
+            "type": "string"
           }
         }
       }
