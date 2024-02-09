@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://github.com/ComplianceAsCode/schemas/tailoring/schema.json",
   "title": "Tailoring",
-  "description": "The Tailoring",
+  "description": "Defines customizations of rules and variables for a set of profiles",
   "type": "object",
   "additionalProperties": true,
   "properties": {
@@ -10,6 +10,8 @@
       "type": "array",
       "items": {
         "type": "object",
+        "title": "Profile",
+        "description": "A new tailored profile with modifications",
         "additionalProperties": true,
         "anyOf": [
           {
@@ -20,16 +22,20 @@
         ],
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "New profile identifier, can be same as 'base_profile_id', to 'shadow' the origin"
           },
           "base_profile_id": {
-            "type": "string"
+            "type": "string",
+            "description": "Original profile identifier, the base for modifications"
           },
           "title": {
-            "type": "string"
+            "type": "string",
+            "description": "Title for the new profile, inherited from base profile if not given, required if there is no base profile"
           },
           "rules": {
             "type": "object",
+            "description": "Rule modifications, keys are identifiers",
             "additionalProperties": {
               "type": "object",
               "additionalProperties": true,
@@ -44,21 +50,25 @@
               ],
               "properties": {
                 "evaluate": {
-                  "type": "boolean"
+                  "type": "boolean",
+                  "description": "Includes or excludes a rule from evaluation"
                 },
                 "severity": {
                   "type": "string",
-                  "enum": ["unknown", "info", "low", "medium", "high"]
+                  "enum": ["unknown", "info", "low", "medium", "high"],
+                  "description": "Overrides severity level of the rule"
                 },
                 "role": {
                   "type": "string",
-                  "enum": ["full", "unscored", "unchecked"]
+                  "enum": ["full", "unscored", "unchecked"],
+                  "description": "Overrides role of the rule"
                 }
               }
             }
           },
           "variables": {
             "type": "object",
+            "description": "Variables modifications, keys are identifiers",
             "additionalProperties": {
               "type": "object",
               "additionalProperties": true,
@@ -71,10 +81,12 @@
               ],
               "properties": {
                 "value": {
-                  "type": ["string", "integer", "boolean"]
+                  "type": ["string", "integer", "boolean"],
+                  "description": "Directly overrides variable's value with a given value"
                 },
                 "option_id": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Overrides variable's value with a predefined value identified by 'option_id'"
                 }
               }
             }
