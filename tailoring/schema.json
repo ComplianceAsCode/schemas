@@ -4,58 +4,80 @@
   "title": "Tailoring",
   "description": "The Tailoring",
   "type": "object",
-  "required": ["base_profile_id"],
-  "additionalProperties": false,
+  "additionalProperties": true,
   "properties": {
-    "base_profile_id": {
-      "type": "string"
-    },
-    "id": {
-      "type": "string"
-    },
-    "title": {
-      "type": "string"
-    },
-    "rules": {
-      "type": "object",
-      "additionalProperties": {
+    "profiles": {
+      "type": "array",
+      "items": {
         "type": "object",
-        "additionalProperties": false,
+        "additionalProperties": true,
         "anyOf": [
-          {"required": ["selected"]},
-          {"required": ["severity"]},
-          {"required": ["role"]}
-        ],
-        "properties": {
-          "selected": {
-            "type": "boolean"
-          },
-          "severity": {
-            "type": "string",
-            "enum": ["unknown", "info", "low", "medium", "high"]
-          },
-          "role": {
-            "type": "string",
-            "enum": ["full", "unscored", "unchecked"]
+          {
+            "required": ["id","base_profile_id"]
+          }, {
+            "required": ["id","title"]
           }
-        }
-      }
-    },
-    "variables": {
-      "type": "object",
-      "additionalProperties": {
-        "type": "object",
-        "additionalProperties": false,
-        "oneOf": [
-          {"required": ["value"]},
-          {"required": ["select"]}
         ],
         "properties": {
-          "value": {
-            "type": ["string", "integer", "boolean"]
-          },
-          "select": {
+          "id": {
             "type": "string"
+          },
+          "base_profile_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "rules": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true,
+              "anyOf": [
+                {
+                  "required": ["evaluate"]
+                }, {
+                  "required": ["severity"]
+                }, {
+                  "required": ["role"]
+                }
+              ],
+              "properties": {
+                "evaluate": {
+                  "type": "boolean"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": ["unknown", "info", "low", "medium", "high"]
+                },
+                "role": {
+                  "type": "string",
+                  "enum": ["full", "unscored", "unchecked"]
+                }
+              }
+            }
+          },
+          "variables": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true,
+              "oneOf": [
+                {
+                  "required": ["value"]
+                }, {
+                  "required": ["option_id"]
+                }
+              ],
+              "properties": {
+                "value": {
+                  "type": ["string", "integer", "boolean"]
+                },
+                "option_id": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }

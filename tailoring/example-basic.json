@@ -1,25 +1,29 @@
 {
-  "id": "tailored_profile",
-  "title": "Test",
-  "base_profile_id": "original_profile",
-  "rules": {
-    "some_rule_id_here": {
-      "selected": true,
-      "severity": "high"
-    },
-    "different_rule_id_here": {
-      "role": "unscored"
+  "profiles": [
+    {
+      "id": "tailoring_id",
+      "title": "Test",
+      "base_profile_id": "original_profile_id",
+      "rules": {
+        "some_rule_id": {
+          "evaluate": true,
+          "severity": "high"
+        },
+        "different_rule_id": {
+          "role": "unscored"
+        }
+      },
+      "variables": {
+        "a_variable_id": {
+          "value": "New Value"
+        },
+        "another_variable_id": {
+          "value": 42
+        },
+        "3rd_variable_id": {
+          "option_id": "some_option_id"
+        }
+      }
     }
-  },
-  "variables": {
-    "a_variable_id": {
-      "value": "New Value"
-    },
-    "another_variable_id": {
-      "value": 42
-    },
-    "3rd_variable_id": {
-      "select": "option_id"
-    }
-  }
+  ]
 }
