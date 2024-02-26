@@ -4,6 +4,11 @@
       "id": "tailoring_id",
       "title": "Test",
       "base_profile_id": "original_profile_id",
+      "groups": {
+        "some_group_id": {
+          "evaluate": true
+        }
+      },
       "rules": {
         "some_rule_id": {
           "evaluate": true,

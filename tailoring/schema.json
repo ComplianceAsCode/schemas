@@ -33,6 +33,25 @@
             "type": "string",
             "description": "Title for the new profile, inherited from base profile if not given, required if there is no base profile"
           },
+          "groups": {
+            "type": "object",
+            "description": "Group modifications, keys are identifiers",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true,
+              "anyOf": [
+                {
+                  "required": ["evaluate"]
+                }
+              ],
+              "properties": {
+                "evaluate": {
+                  "type": "boolean",
+                  "description": "Includes or excludes a group of rules from evaluation"
+                }
+              }
+            }
+          },
           "rules": {
             "type": "object",
             "description": "Rule modifications, keys are identifiers",
